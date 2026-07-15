@@ -293,11 +293,11 @@ document.querySelectorAll('[data-bool-field]').forEach(input => {
   });
 });
 
-/* ─── Install instructions: device / version filter ─────────────── */
+/* ─── Install instructions: device / version filter (Web & Desktop) ── */
 const installUI = { device: 'windows', version: 'new' };
 
 function updateInstallCards() {
-  document.querySelectorAll('.install-card').forEach(card => {
+  document.querySelectorAll('.install-card[data-device]').forEach(card => {
     const matches = card.dataset.device === installUI.device && card.dataset.version === installUI.version;
     card.classList.toggle('is-hidden', !matches);
   });
@@ -324,6 +324,27 @@ document.querySelectorAll('.mode-btn[data-version]').forEach(btn => {
 });
 
 updateInstallCards();
+
+/* ─── Install instructions: mobile platform filter ───────────────── */
+const mobileUI = { platform: 'ios' };
+
+function updateMobileInstallCards() {
+  document.querySelectorAll('.install-card[data-platform]').forEach(card => {
+    card.classList.toggle('is-hidden', card.dataset.platform !== mobileUI.platform);
+  });
+}
+
+document.querySelectorAll('.mode-btn[data-platform]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    mobileUI.platform = btn.dataset.platform;
+    document.querySelectorAll('.mode-btn[data-platform]').forEach(b => {
+      b.classList.toggle('active', b.dataset.platform === mobileUI.platform);
+    });
+    updateMobileInstallCards();
+  });
+});
+
+updateMobileInstallCards();
 
 function copyRichViaExecCommand(html) {
   // Render the HTML into a hidden contenteditable, select it, run copy.

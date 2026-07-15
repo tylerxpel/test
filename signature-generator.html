@@ -494,6 +494,77 @@
     margin: 0;
   }
 
+  /* ─── How To Use: numbered 1-2-3 flow (page 3) ─────────────────── */
+  .howto-steps {
+    position: relative;
+  }
+
+  .howto-steps::before {
+    content: '';
+    position: absolute;
+    left: 13px;
+    top: 30px;
+    bottom: 30px;
+    width: 1px;
+    background: var(--border-strong);
+    z-index: 0;
+  }
+
+  .howto-step {
+    position: relative;
+    margin-bottom: 28px;
+  }
+
+  .howto-step:last-child { margin-bottom: 0; }
+
+  .howto-step-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+
+  .howto-step-num {
+    position: relative;
+    z-index: 1;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .howto-step-title {
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 2px;
+    line-height: 1.3;
+  }
+
+  .howto-step-sub {
+    font-size: 12px;
+    color: var(--text-mute);
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .howto-step .mode-toggle-large,
+  .howto-step .copy-hero,
+  .howto-step .plaintext-preview {
+    margin-left: 42px;
+  }
+
+  .howto-step .install-sections {
+    margin-left: 42px;
+  }
+
   /* ─── Install instructions (page 3) ───────────────────────────── */
   .install-sections { display: flex; flex-direction: column; gap: 16px; }
 
@@ -659,9 +730,9 @@
       <span class="step-label">Preview</span>
     </div>
     <div class="step-connector"></div>
-    <div class="step" id="step-3" data-step="3" role="button" tabindex="0" aria-label="Step 3: How To Use">
+    <div class="step" id="step-3" data-step="3" role="button" tabindex="0" aria-label="Step 3: Web & Desktop Setup">
       <div class="step-num">3</div>
-      <span class="step-label">How To Use</span>
+      <span class="step-label">Web &amp; Desktop</span>
     </div>
     <div class="step-connector"></div>
     <div class="step" id="step-4" data-step="4" role="button" tabindex="0" aria-label="Step 4: Mobile">
@@ -709,7 +780,7 @@
     <div class="nav-row">
       <span class="spacer"></span>
       <button class="btn btn-primary" id="next-1" type="button">
-        Next
+        Next &ndash; Preview
         <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
     </div>
@@ -732,7 +803,7 @@
         Back
       </button>
       <button class="btn btn-primary" id="next-2" type="button">
-        Next
+        Next &ndash; Web &amp; Desktop Setup
         <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
     </div>
@@ -741,63 +812,88 @@
   <!-- ── Page 3: How To Use ────────────────────────────────────── -->
   <div id="page-3" class="page">
     <div class="panel">
-      <h2 class="panel-title">How To Use</h2>
-      <p class="panel-helper">Copy your signature, then select your computer and Outlook version to see the right install steps.</p>
+      <h2 class="panel-title">Outlook Web &amp; Desktop Setup</h2>
+      <p class="panel-helper">Three quick steps to get your signature in Outlook.</p>
 
-      <div class="copy-hero">
-        <button class="btn-copy-outlook" id="copy-rich" type="button">
-          <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
-          Copy for Outlook
-        </button>
-        <p class="copy-hint">Copies the formatted signature &mdash; images, layout, and all. Paste directly into the Outlook editor.</p>
-      </div>
+      <div class="howto-steps">
 
-      <p class="toggle-section-label">Your Computer</p>
-      <div class="mode-toggle-large" role="group" aria-label="Choose your computer">
-        <button class="mode-btn active" type="button" data-device="windows" id="device-windows">
-          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg>
-          Windows
-        </button>
-        <button class="mode-btn" type="button" data-device="mac" id="device-mac">
-          <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="11" rx="1"/><path d="M2 18h20l-1.5 2h-17z"/></svg>
-          Mac
-        </button>
-      </div>
-
-      <p class="toggle-section-label">Outlook Version</p>
-      <div class="mode-toggle-large" role="group" aria-label="Choose your Outlook version">
-        <button class="mode-btn active" type="button" data-version="new" id="version-new">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          <span class="mode-btn-stack">
-            <span class="mode-btn-main">Web &amp; New Outlook</span>
-            <span class="mode-btn-sub">outlook.com &middot; Microsoft 365 &middot; New Outlook</span>
-          </span>
-        </button>
-        <button class="mode-btn" type="button" data-version="classic" id="version-classic">
-          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          <span class="mode-btn-stack">
-            <span class="mode-btn-main">Classic Desktop App</span>
-            <span class="mode-btn-sub">Outlook 2016 &ndash; 2021</span>
-          </span>
-        </button>
-      </div>
-
-      <div class="install-sections">
-
-        <div class="install-card" data-device="windows" data-version="new">
-          <div class="install-card-header">
-            <div class="install-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
+        <div class="howto-step">
+          <div class="howto-step-header">
+            <span class="howto-step-num">1</span>
             <div>
-              <p class="install-card-title">New Outlook &amp; Outlook on the Web &mdash; Windows</p>
-              <p class="install-card-sub">outlook.com &middot; Microsoft 365 &middot; New Outlook for Windows</p>
+              <p class="howto-step-title">What computer are you using?</p>
             </div>
           </div>
-          <ol class="install-steps">
-            <li class="install-step"><span class="step-num-sm">1</span><span>Click the <strong>Settings</strong> gear icon in the top-right corner of Outlook.</span></li>
-            <li class="install-step"><span class="step-num-sm">2</span><span>Select <code>Accounts &rarr; Signatures</code>.</span></li>
-            <li class="install-step"><span class="step-num-sm">3</span><span>Click <strong>New signature</strong> (or the <strong>+</strong> icon) and give it a name (e.g. <em>XPEL</em>).</span></li>
+          <div class="mode-toggle-large" role="group" aria-label="Choose your computer">
+            <button class="mode-btn active" type="button" data-device="windows" id="device-windows">
+              <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg>
+              Windows
+            </button>
+            <button class="mode-btn" type="button" data-device="mac" id="device-mac">
+              <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="11" rx="1"/><path d="M2 18h20l-1.5 2h-17z"/></svg>
+              Mac
+            </button>
+          </div>
+        </div>
+
+        <div class="howto-step">
+          <div class="howto-step-header">
+            <span class="howto-step-num">2</span>
+            <div>
+              <p class="howto-step-title">Which version of Outlook do you use?</p>
+              <p class="howto-step-sub">Not sure? Most people today use Web &amp; New Outlook.</p>
+            </div>
+          </div>
+          <div class="mode-toggle-large" role="group" aria-label="Choose your Outlook version">
+            <button class="mode-btn active" type="button" data-version="new" id="version-new">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <span class="mode-btn-stack">
+                <span class="mode-btn-main">Web &amp; New Outlook</span>
+                <span class="mode-btn-sub">outlook.com &middot; Microsoft 365 &middot; New Outlook</span>
+              </span>
+            </button>
+            <button class="mode-btn" type="button" data-version="classic" id="version-classic">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+              <span class="mode-btn-stack">
+                <span class="mode-btn-main">Classic Desktop App</span>
+                <span class="mode-btn-sub">Outlook 2016 &ndash; 2021</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <div class="howto-step">
+          <div class="howto-step-header">
+            <span class="howto-step-num">3</span>
+            <div>
+              <p class="howto-step-title">Click the button below to copy your signature</p>
+              <p class="howto-step-sub">Follow the instructions below to install in Outlook.</p>
+            </div>
+          </div>
+
+          <div class="copy-hero">
+            <button class="btn-copy-outlook" id="copy-rich" type="button">
+              <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+              Copy for Outlook
+            </button>
+          </div>
+
+          <div class="install-sections">
+
+            <div class="install-card" data-device="windows" data-version="new">
+              <div class="install-card-header">
+                <div class="install-icon">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                </div>
+                <div>
+                  <p class="install-card-title">New Outlook &amp; Outlook on the Web &mdash; Windows</p>
+                  <p class="install-card-sub">outlook.com &middot; Microsoft 365 &middot; New Outlook for Windows</p>
+                </div>
+              </div>
+              <ol class="install-steps">
+                <li class="install-step"><span class="step-num-sm">1</span><span>Click the <strong>Settings</strong> gear icon in the top-right corner of Outlook.</span></li>
+                <li class="install-step"><span class="step-num-sm">2</span><span>Select <code>Accounts &rarr; Signatures</code>.</span></li>
+                <li class="install-step"><span class="step-num-sm">3</span><span>Click <strong>New signature</strong> (or the <strong>+</strong> icon) and give it a name (e.g. <em>XPEL</em>).</span></li>
             <li class="install-step"><span class="step-num-sm">4</span><span>Click into the signature editor, then press <code>Ctrl+V</code> to paste.</span></li>
             <li class="install-step"><span class="step-num-sm">5</span><span>Click <strong>Save</strong>. Set it as your default for new messages and/or replies using the dropdowns.</span></li>
           </ol>
@@ -863,6 +959,10 @@
         </div>
 
       </div>
+
+        </div>
+
+      </div>
     </div>
 
     <div class="nav-row">
@@ -871,7 +971,7 @@
         Back
       </button>
       <button class="btn btn-primary" id="next-3" type="button">
-        Next
+        Next &ndash; Mobile Setup
         <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </button>
     </div>
@@ -881,36 +981,90 @@
   <div id="page-4" class="page">
     <div class="panel">
       <h2 class="panel-title">Mobile Setup</h2>
-      <p class="panel-helper">Outlook Mobile signatures are separate from desktop and don&rsquo;t sync automatically &mdash; you'll need to set this up once on each phone. This is a simplified, plain-text signature that works the same way on iOS and Android, and it's clearly marked as a mobile reply.</p>
+      <p class="panel-helper">Outlook Mobile signatures are separate from desktop and don&rsquo;t sync automatically. You will need to set this up once on each phone. This is a simplified, plain-text signature that works the same way on iOS and Android.</p>
 
-      <div class="plaintext-preview" id="plaintext-preview"></div>
+      <div class="howto-steps">
 
-      <div class="copy-hero">
-        <button class="btn-copy-outlook" id="copy-mobile" type="button">
-          <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
-          Copy Mobile Signature
-        </button>
-        <p class="copy-hint">Plain text, no logo or images &mdash; pastes cleanly into Outlook Mobile on any phone.</p>
-      </div>
-
-      <div class="install-card">
-        <div class="install-card-header">
-          <div class="install-icon">
-            <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 20h8"/></svg>
+        <div class="howto-step">
+          <div class="howto-step-header">
+            <span class="howto-step-num">1</span>
+            <div>
+              <p class="howto-step-title">What type of mobile device do you have?</p>
+            </div>
           </div>
-          <div>
-            <p class="install-card-title">Outlook Mobile &mdash; iOS &amp; Android</p>
-            <p class="install-card-sub">Same steps on both platforms</p>
+          <div class="mode-toggle-large" role="group" aria-label="Choose your mobile platform">
+            <button class="mode-btn active" type="button" data-platform="ios" id="platform-ios">
+              <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+              iOS
+            </button>
+            <button class="mode-btn" type="button" data-platform="android" id="platform-android">
+              <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+              Android
+            </button>
           </div>
         </div>
-        <ol class="install-steps">
-          <li class="install-step"><span class="step-num-sm">1</span><span>Tap the account icon or menu in the top-left of Outlook, then tap the <strong>Settings</strong> gear.</span></li>
-          <li class="install-step"><span class="step-num-sm">2</span><span>Select your account, then tap <strong>Signature</strong>.</span></li>
-          <li class="install-step"><span class="step-num-sm">3</span><span>Clear any existing text, tap and hold the empty field, then choose <strong>Paste</strong>.</span></li>
-          <li class="install-step"><span class="step-num-sm">4</span><span>Tap the checkmark (or <strong>Done</strong>) in the top-right to save.</span></li>
-        </ol>
-      </div>
 
+        <div class="howto-step">
+          <div class="howto-step-header">
+            <span class="howto-step-num">2</span>
+            <div>
+              <p class="howto-step-title">Click the button below to copy your signature</p>
+              <p class="howto-step-sub">Follow the instructions below to install in Outlook.</p>
+            </div>
+          </div>
+
+          <div class="plaintext-preview" id="plaintext-preview"></div>
+
+          <div class="copy-hero">
+            <button class="btn-copy-outlook" id="copy-mobile" type="button">
+              <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+              Copy Mobile Signature
+            </button>
+            <p class="copy-hint">Pastes cleanly into the Outlook Mobile signature field.</p>
+          </div>
+
+          <div class="install-sections">
+
+            <div class="install-card" data-platform="ios">
+              <div class="install-card-header">
+                <div class="install-icon">
+                  <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+                </div>
+                <div>
+                  <p class="install-card-title">Outlook Mobile &mdash; iOS</p>
+                  <p class="install-card-sub">iPhone &amp; iPad</p>
+                </div>
+              </div>
+              <ol class="install-steps">
+                <li class="install-step"><span class="step-num-sm">1</span><span>Tap your profile picture or the menu icon in the top-left of Outlook, then tap the <strong>Settings</strong> gear.</span></li>
+                <li class="install-step"><span class="step-num-sm">2</span><span>Select your account, then tap <strong>Signature</strong>.</span></li>
+                <li class="install-step"><span class="step-num-sm">3</span><span>Clear the default text (e.g. <em>&ldquo;Get Outlook for iOS&rdquo;</em>), tap and hold the empty field, then choose <strong>Paste</strong>.</span></li>
+                <li class="install-step"><span class="step-num-sm">4</span><span>Tap the back arrow (or <strong>Done</strong>) to save.</span></li>
+              </ol>
+            </div>
+
+            <div class="install-card" data-platform="android">
+              <div class="install-card-header">
+                <div class="install-icon">
+                  <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg>
+                </div>
+                <div>
+                  <p class="install-card-title">Outlook Mobile &mdash; Android</p>
+                  <p class="install-card-sub">Phones &amp; tablets</p>
+                </div>
+              </div>
+              <ol class="install-steps">
+                <li class="install-step"><span class="step-num-sm">1</span><span>Tap your profile picture or the menu icon in the top-left of Outlook, then tap the <strong>Settings</strong> gear.</span></li>
+                <li class="install-step"><span class="step-num-sm">2</span><span>Select your account, then tap <strong>Signature</strong>.</span></li>
+                <li class="install-step"><span class="step-num-sm">3</span><span>Clear the default text (e.g. <em>&ldquo;Get Outlook for Android&rdquo;</em>), tap and hold the empty field, then choose <strong>Paste</strong>.</span></li>
+                <li class="install-step"><span class="step-num-sm">4</span><span>Tap the back arrow to save.</span></li>
+              </ol>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
     </div>
 
     <div class="nav-row">
@@ -1234,11 +1388,11 @@ document.querySelectorAll('[data-bool-field]').forEach(input => {
   });
 });
 
-/* ─── Install instructions: device / version filter ─────────────── */
+/* ─── Install instructions: device / version filter (Web & Desktop) ── */
 const installUI = { device: 'windows', version: 'new' };
 
 function updateInstallCards() {
-  document.querySelectorAll('.install-card').forEach(card => {
+  document.querySelectorAll('.install-card[data-device]').forEach(card => {
     const matches = card.dataset.device === installUI.device && card.dataset.version === installUI.version;
     card.classList.toggle('is-hidden', !matches);
   });
@@ -1265,6 +1419,27 @@ document.querySelectorAll('.mode-btn[data-version]').forEach(btn => {
 });
 
 updateInstallCards();
+
+/* ─── Install instructions: mobile platform filter ───────────────── */
+const mobileUI = { platform: 'ios' };
+
+function updateMobileInstallCards() {
+  document.querySelectorAll('.install-card[data-platform]').forEach(card => {
+    card.classList.toggle('is-hidden', card.dataset.platform !== mobileUI.platform);
+  });
+}
+
+document.querySelectorAll('.mode-btn[data-platform]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    mobileUI.platform = btn.dataset.platform;
+    document.querySelectorAll('.mode-btn[data-platform]').forEach(b => {
+      b.classList.toggle('active', b.dataset.platform === mobileUI.platform);
+    });
+    updateMobileInstallCards();
+  });
+});
+
+updateMobileInstallCards();
 
 function copyRichViaExecCommand(html) {
   // Render the HTML into a hidden contenteditable, select it, run copy.
