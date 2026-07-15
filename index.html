@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>XPEL · Signature Generator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+
+  <header class="app-header">
+    <img id="header-logo" class="header-logo" alt="XPEL">
+    <div class="brand-text">
+      <span class="title">Signature Generator</span>
+      <span class="subtitle">XPEL email signature for Outlook</span>
+    </div>
+  </header>
+
+  <!-- Stepper -->
+  <div class="stepper" role="navigation" aria-label="Progress">
+    <div class="step active" id="step-1" data-step="1" role="button" tabindex="0" aria-label="Step 1: Your Details">
+      <div class="step-num">1</div>
+      <span class="step-label">Your Details</span>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step" id="step-2" data-step="2" role="button" tabindex="0" aria-label="Step 2: Preview">
+      <div class="step-num">2</div>
+      <span class="step-label">Preview</span>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step" id="step-3" data-step="3" role="button" tabindex="0" aria-label="Step 3: How To Use">
+      <div class="step-num">3</div>
+      <span class="step-label">How To Use</span>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step" id="step-4" data-step="4" role="button" tabindex="0" aria-label="Step 4: Mobile">
+      <div class="step-num">4</div>
+      <span class="step-label">Mobile</span>
+    </div>
+  </div>
+
+  <!-- ── Page 1: Your Details ─────────────────────────────────── -->
+  <div id="page-1" class="page active">
+    <div class="panel">
+      <h2 class="panel-title">Your Details</h2>
+      <p class="panel-helper">Fill in your information below. These populate the signature in real time.</p>
+
+      <div class="field">
+        <label class="field-label" for="f-name">Full Name</label>
+        <input class="field-input" id="f-name" type="text" data-field="name" autocomplete="name" placeholder="Jane Doe">
+      </div>
+      <div class="field">
+        <label class="field-label" for="f-title">Job Title</label>
+        <input class="field-input" id="f-title" type="text" data-field="title" autocomplete="organization-title" placeholder="Job Title">
+      </div>
+      <div class="field">
+        <label class="field-label" for="f-phone">Phone <span class="field-optional">(optional)</span></label>
+        <input class="field-input" id="f-phone" type="tel" data-field="phone" autocomplete="tel" placeholder="+1 234 567 8910">
+      </div>
+      <div class="field">
+        <label class="field-label" for="f-email">Email</label>
+        <input class="field-input" id="f-email" type="email" data-field="email" autocomplete="email" placeholder="you@xpel.com">
+      </div>
+      <div class="field">
+        <label class="field-label" for="f-website">Website</label>
+        <input class="field-input" id="f-website" type="text" data-field="website" autocomplete="url" placeholder="xpel.com">
+      </div>
+      <div class="field field-toggle">
+        <span class="field-label">Mobile App Links <span class="field-optional">(optional)</span></span>
+        <label class="toggle-row" for="f-app-links">
+          <input type="checkbox" id="f-app-links" class="toggle-input" data-bool-field="showAppLinks">
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span class="toggle-text">Include "Download the XPEL Mobile App Today"</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <span class="spacer"></span>
+      <button class="btn btn-primary" id="next-1" type="button">
+        Next
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Page 2: Preview ──────────────────────────────────────── -->
+  <div id="page-2" class="page">
+    <div class="panel">
+      <h2 class="panel-title">Preview</h2>
+      <p class="panel-helper">Here's a live preview of your signature.</p>
+
+      <div class="preview-stage">
+        <iframe id="preview-frame" title="Signature preview"></iframe>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn" id="back-2" type="button">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        Back
+      </button>
+      <button class="btn btn-primary" id="next-2" type="button">
+        Next
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Page 3: How To Use ────────────────────────────────────── -->
+  <div id="page-3" class="page">
+    <div class="panel">
+      <h2 class="panel-title">How To Use</h2>
+      <p class="panel-helper">Copy your signature, then select your computer and Outlook version to see the right install steps.</p>
+
+      <div class="copy-hero">
+        <button class="btn-copy-outlook" id="copy-rich" type="button">
+          <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+          Copy for Outlook
+        </button>
+        <p class="copy-hint">Copies the formatted signature &mdash; images, layout, and all. Paste directly into the Outlook editor.</p>
+      </div>
+
+      <p class="toggle-section-label">Your Computer</p>
+      <div class="mode-toggle-large" role="group" aria-label="Choose your computer">
+        <button class="mode-btn active" type="button" data-device="windows" id="device-windows">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg>
+          Windows
+        </button>
+        <button class="mode-btn" type="button" data-device="mac" id="device-mac">
+          <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="11" rx="1"/><path d="M2 18h20l-1.5 2h-17z"/></svg>
+          Mac
+        </button>
+      </div>
+
+      <p class="toggle-section-label">Outlook Version</p>
+      <div class="mode-toggle-large" role="group" aria-label="Choose your Outlook version">
+        <button class="mode-btn active" type="button" data-version="new" id="version-new">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="mode-btn-stack">
+            <span class="mode-btn-main">Web &amp; New Outlook</span>
+            <span class="mode-btn-sub">outlook.com &middot; Microsoft 365 &middot; New Outlook</span>
+          </span>
+        </button>
+        <button class="mode-btn" type="button" data-version="classic" id="version-classic">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <span class="mode-btn-stack">
+            <span class="mode-btn-main">Classic Desktop App</span>
+            <span class="mode-btn-sub">Outlook 2016 &ndash; 2021</span>
+          </span>
+        </button>
+      </div>
+
+      <div class="install-sections">
+
+        <div class="install-card" data-device="windows" data-version="new">
+          <div class="install-card-header">
+            <div class="install-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div>
+              <p class="install-card-title">New Outlook &amp; Outlook on the Web &mdash; Windows</p>
+              <p class="install-card-sub">outlook.com &middot; Microsoft 365 &middot; New Outlook for Windows</p>
+            </div>
+          </div>
+          <ol class="install-steps">
+            <li class="install-step"><span class="step-num-sm">1</span><span>Click the <strong>Settings</strong> gear icon in the top-right corner of Outlook.</span></li>
+            <li class="install-step"><span class="step-num-sm">2</span><span>Select <code>Accounts &rarr; Signatures</code>.</span></li>
+            <li class="install-step"><span class="step-num-sm">3</span><span>Click <strong>New signature</strong> (or the <strong>+</strong> icon) and give it a name (e.g. <em>XPEL</em>).</span></li>
+            <li class="install-step"><span class="step-num-sm">4</span><span>Click into the signature editor, then press <code>Ctrl+V</code> to paste.</span></li>
+            <li class="install-step"><span class="step-num-sm">5</span><span>Click <strong>Save</strong>. Set it as your default for new messages and/or replies using the dropdowns.</span></li>
+          </ol>
+        </div>
+
+        <div class="install-card" data-device="windows" data-version="classic">
+          <div class="install-card-header">
+            <div class="install-icon">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <div>
+              <p class="install-card-title">Classic Outlook Desktop &mdash; Windows</p>
+              <p class="install-card-sub">Outlook 2016 &middot; 2019 &middot; 2021 (Windows)</p>
+            </div>
+          </div>
+          <ol class="install-steps">
+            <li class="install-step"><span class="step-num-sm">1</span><span>Open Outlook and go to <code>File &rarr; Options &rarr; Mail</code>.</span></li>
+            <li class="install-step"><span class="step-num-sm">2</span><span>Click <strong>Signatures&hellip;</strong> under the <em>Compose messages</em> section.</span></li>
+            <li class="install-step"><span class="step-num-sm">3</span><span>Click <strong>New</strong>, enter a name (e.g. <em>XPEL</em>), and click <strong>OK</strong>.</span></li>
+            <li class="install-step"><span class="step-num-sm">4</span><span>Click into the editor area at the bottom, then press <code>Ctrl+V</code> to paste.</span></li>
+            <li class="install-step"><span class="step-num-sm">5</span><span>Click <strong>OK</strong> to save. Use the dropdowns at top right to set it as default for <em>New messages</em> and/or <em>Replies/forwards</em>.</span></li>
+          </ol>
+        </div>
+
+        <div class="install-card" data-device="mac" data-version="new">
+          <div class="install-card-header">
+            <div class="install-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div>
+              <p class="install-card-title">New Outlook &amp; Outlook on the Web &mdash; Mac</p>
+              <p class="install-card-sub">outlook.com &middot; Microsoft 365 &middot; New Outlook for Mac</p>
+            </div>
+          </div>
+          <ol class="install-steps">
+            <li class="install-step"><span class="step-num-sm">1</span><span>Click the <strong>Settings</strong> gear icon in the top-right corner. If you don&rsquo;t see one, click the <strong>Outlook</strong> menu &rarr; <strong>Settings</strong> instead.</span></li>
+            <li class="install-step"><span class="step-num-sm">2</span><span>Select <code>Accounts &rarr; Signatures</code>.</span></li>
+            <li class="install-step"><span class="step-num-sm">3</span><span>Click <strong>New signature</strong> (or the <strong>+</strong> icon) and give it a name (e.g. <em>XPEL</em>).</span></li>
+            <li class="install-step"><span class="step-num-sm">4</span><span>Click into the signature editor, then press <code>&#8984;V</code> to paste.</span></li>
+            <li class="install-step warn"><span class="step-num-sm">5</span><span>A small clipboard icon will appear right after pasting &mdash; click it and choose <strong>Keep Source Formatting</strong>. Skipping this is the most common cause of a squished or distorted signature on Mac.</span></li>
+            <li class="install-step"><span class="step-num-sm">6</span><span>Click <strong>Save</strong>. Set it as your default for new messages and/or replies using the dropdowns.</span></li>
+          </ol>
+        </div>
+
+        <div class="install-card" data-device="mac" data-version="classic">
+          <div class="install-card-header">
+            <div class="install-icon">
+              <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="11" rx="1"/><path d="M2 18h20l-1.5 2h-17z"/></svg>
+            </div>
+            <div>
+              <p class="install-card-title">Classic Outlook for Mac</p>
+              <p class="install-card-sub">Outlook 2019 &middot; 2021 for Mac (pre-&ldquo;New Outlook&rdquo; interface)</p>
+            </div>
+          </div>
+          <ol class="install-steps">
+            <li class="install-step"><span class="step-num-sm">1</span><span>Click the <strong>Outlook</strong> menu in the top-left of the screen, then select <strong>Preferences</strong>.</span></li>
+            <li class="install-step"><span class="step-num-sm">2</span><span>Click <strong>Signatures</strong> under the <em>Email</em> section.</span></li>
+            <li class="install-step"><span class="step-num-sm">3</span><span>Click the <strong>+</strong> icon to add a new signature and give it a name (e.g. <em>XPEL</em>).</span></li>
+            <li class="install-step"><span class="step-num-sm">4</span><span>Click into the editor, then press <code>&#8984;V</code> to paste.</span></li>
+            <li class="install-step warn"><span class="step-num-sm">5</span><span>A small clipboard icon will appear right after pasting &mdash; click it and choose <strong>Keep Source Formatting</strong>. Skipping this is the most common cause of a squished or distorted signature on Mac.</span></li>
+            <li class="install-step"><span class="step-num-sm">6</span><span>Click <strong>Save</strong>, close the window, then use the dropdowns to set it as default for <em>New messages</em> and/or <em>Replies/forwards</em>.</span></li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn" id="back-3" type="button">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        Back
+      </button>
+      <button class="btn btn-primary" id="next-3" type="button">
+        Next
+        <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Page 4: Mobile Setup ──────────────────────────────────── -->
+  <div id="page-4" class="page">
+    <div class="panel">
+      <h2 class="panel-title">Mobile Setup</h2>
+      <p class="panel-helper">Outlook Mobile signatures are separate from desktop and don&rsquo;t sync automatically &mdash; you'll need to set this up once on each phone. This is a simplified, plain-text signature that works the same way on iOS and Android, and it's clearly marked as a mobile reply.</p>
+
+      <div class="plaintext-preview" id="plaintext-preview"></div>
+
+      <div class="copy-hero">
+        <button class="btn-copy-outlook" id="copy-mobile" type="button">
+          <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+          Copy Mobile Signature
+        </button>
+        <p class="copy-hint">Plain text, no logo or images &mdash; pastes cleanly into Outlook Mobile on any phone.</p>
+      </div>
+
+      <div class="install-card">
+        <div class="install-card-header">
+          <div class="install-icon">
+            <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 20h8"/></svg>
+          </div>
+          <div>
+            <p class="install-card-title">Outlook Mobile &mdash; iOS &amp; Android</p>
+            <p class="install-card-sub">Same steps on both platforms</p>
+          </div>
+        </div>
+        <ol class="install-steps">
+          <li class="install-step"><span class="step-num-sm">1</span><span>Tap the account icon or menu in the top-left of Outlook, then tap the <strong>Settings</strong> gear.</span></li>
+          <li class="install-step"><span class="step-num-sm">2</span><span>Select your account, then tap <strong>Signature</strong>.</span></li>
+          <li class="install-step"><span class="step-num-sm">3</span><span>Clear any existing text, tap and hold the empty field, then choose <strong>Paste</strong>.</span></li>
+          <li class="install-step"><span class="step-num-sm">4</span><span>Tap the checkmark (or <strong>Done</strong>) in the top-right to save.</span></li>
+        </ol>
+      </div>
+
+    </div>
+
+    <div class="nav-row">
+      <button class="btn" id="back-4" type="button">
+        <svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        Back
+      </button>
+      <span class="spacer"></span>
+    </div>
+  </div>
+
+</div><!-- /.app -->
+
+<div class="toast" id="toast" role="status" aria-live="polite">Copied</div>
+<script src="assets.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
